@@ -1,0 +1,28 @@
+<%- include('header'); -%>
+    <!-- <%%> are added on each line of js  -->
+<div class="box" id = "heading">
+    <h1><%= Listtitle %></h1>
+</div>
+<div class="box">
+  <% newlistitems.forEach(function(item){ %>
+    <form method="post" action="/delete">
+      <div class="item">
+        <!-- value is issued as item id so that which item is actually checked off. -->
+        <input type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%= item._id %>">
+        <p>
+          <%= item.name %>
+        </p>
+        <input type="hidden" name="listname" value="<%= Listtitle %>">
+      </div>
+
+      </form>
+
+  <% }) %>
+
+  <form method="post" action="/" class="item">
+    <input type="text" name = "newitem" placeholder="Add New Item" autocomplete="off"/>
+    <button type="submit" name="list" value= <%= Listtitle %> > + </button>
+  </form>
+</div>
+
+<%- include('footer'); -%>
